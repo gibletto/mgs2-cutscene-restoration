@@ -1,0 +1,30 @@
+{
+  "name": "mgs2-cutscene-studio-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "node scripts/mock-data.mjs",
+    "build": "tsc -b && vite build",
+    "mock-data": "node scripts/mock-data.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit",
+    "smoke": "node scripts/mock-data.mjs && esbuild smoke.ts --bundle --format=esm --platform=node --outfile=.smoke.mjs --log-level=error && node .smoke.mjs",
+    "smoke:render": "node scripts/mock-data.mjs && esbuild render-smoke.tsx --bundle --format=cjs --platform=node --outfile=.rsmoke.cjs --jsx=automatic --log-level=error --banner:js=\"globalThis.location={search:'?mock=1',protocol:'http:',host:'x'};globalThis.WebSocket=function(){};\" && node .rsmoke.cjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.169.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@types/three": "^0.169.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9"
+  }
+}

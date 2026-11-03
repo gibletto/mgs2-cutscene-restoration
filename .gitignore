@@ -1,0 +1,27 @@
+# Machine-local configuration: your paths
+local.env
+
+# Build output (the default MGS2_BUILD), and the studio binaries built into it
+/build/
+
+# Python
+__pycache__/
+*.pyc
+
+# Never commit game data, or anything generated from the game or the source tree
+*.sdt
+*.gcx
+*.kms
+*.cmdl
+*.ctxr
+*.tri
+*.cv2
+*.anm
+*.amwx
+*.wma
+*.exe
+*.dll
+*.wav
+# ...except the Manhattan crash soundtrack, which is original work published here
+!/restorations/manhattan-crash/audio/arsenal-crash.wav
+

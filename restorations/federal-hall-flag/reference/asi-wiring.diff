@@ -1,0 +1,84 @@
+diff --git a/MGSHDFix.vcxproj b/MGSHDFix.vcxproj
+index 4df3bab..f8e0dee 100644
+--- a/MGSHDFix.vcxproj
++++ b/MGSHDFix.vcxproj
+@@ -95,6 +95,7 @@
+     <ClCompile Include="src\fixes\mgs2_demo_blur.cpp" />
+     <ClCompile Include="src\fixes\mgs2_flare_occlusion.cpp" />
+     <ClCompile Include="src\fixes\mgs2_demo_camera_judder.cpp" />
++    <ClCompile Include="src\fixes\mgs2_ending_flag.cpp" />
+     <ClCompile Include="src\fixes\mgs2_hair_layering.cpp" />
+     <ClCompile Include="src\fixes\mgs2_rotor_procession.cpp" />
+     <ClCompile Include="src\fixes\mgs2_reverb_wet_level.cpp" />
+@@ -266,6 +267,7 @@
+     <ClInclude Include="src\fixes\mgs2_demo_blur.hpp" />
+     <ClInclude Include="src\fixes\mgs2_flare_occlusion.hpp" />
+     <ClInclude Include="src\fixes\mgs2_demo_camera_judder.hpp" />
++    <ClInclude Include="src\fixes\mgs2_ending_flag.hpp" />
+     <ClInclude Include="src\fixes\mgs2_hair_layering.hpp" />
+     <ClInclude Include="src\fixes\mgs2_rotor_procession.hpp" />
+     <ClInclude Include="src\fixes\mgs2_reverb_wet_level.hpp" />
+diff --git a/MGSHDFix.vcxproj.filters b/MGSHDFix.vcxproj.filters
+index 3fc7de4..f73f0fd 100644
+--- a/MGSHDFix.vcxproj.filters
++++ b/MGSHDFix.vcxproj.filters
+@@ -329,6 +329,9 @@
+     <ClCompile Include="src\fixes\mgs2_demo_camera_judder.cpp">
+       <Filter>Fixes</Filter>
+     </ClCompile>
++    <ClCompile Include="src\fixes\mgs2_ending_flag.cpp">
++      <Filter>Fixes</Filter>
++    </ClCompile>
+     <ClCompile Include="src\fixes\mgs2_railgun_beam.cpp">
+       <Filter>Fixes</Filter>
+     </ClCompile>
+@@ -763,6 +766,9 @@
+     <ClInclude Include="src\fixes\mgs2_demo_camera_judder.hpp">
+       <Filter>Fixes\Headers</Filter>
+     </ClInclude>
++    <ClInclude Include="src\fixes\mgs2_ending_flag.hpp">
++      <Filter>Fixes\Headers</Filter>
++    </ClInclude>
+     <ClInclude Include="src\resources\mgs3_linkvarbuf.hpp">
+       <Filter>APIs\Headers</Filter>
+     </ClInclude>
+diff --git a/src/dllmain.cpp b/src/dllmain.cpp
+index 5816ff4..fddf32f 100644
+--- a/src/dllmain.cpp
++++ b/src/dllmain.cpp
+@@ -53,6 +53,7 @@
+ #include "mgs2_gas_haze.hpp"
+ #include "mgs2_soft_shadows.hpp"
+ #include "mgs2_demo_camera_judder.hpp"
++#include "mgs2_ending_flag.hpp"
+ #include "mgs2_hair_layering.hpp"
+ #include "mgs2_rotor_procession.hpp"
+ #include "mgs2_reverb_wet_level.hpp"
+@@ -647,6 +648,7 @@ static void InitializeSubsystems()
+         INITIALIZE(MGS2GasHaze::Initialize());
+         INITIALIZE(MGS2SoftShadows::Initialize());
+         INITIALIZE(MGS2DemoCameraJudder::Initialize());
++        INITIALIZE(MGS2EndingFlag::Initialize());
+         INITIALIZE(MGS2HairLayering::Initialize());
+         INITIALIZE(MGS2RotorProcession::Initialize());
+         INITIALIZE(MGS2TankerSnakeSnap::Initialize());
+diff --git a/src/resources/config.cpp b/src/resources/config.cpp
+index 4f0ec80..cf4a988 100644
+--- a/src/resources/config.cpp
++++ b/src/resources/config.cpp
+@@ -19,6 +19,7 @@
+ #include "mgs2_gas_haze.hpp"
+ #include "mgs2_demo_blur.hpp"
+ #include "mgs2_demo_camera_judder.hpp"
++#include "mgs2_ending_flag.hpp"
+ #include "mgs2_codec_band.hpp"
+ #include "mgs2_tanker_fog.hpp"
+ #include "mgs2_soft_particles.hpp"
+@@ -770,6 +771,7 @@ void Config::Read()
+                 &MGS2ConcentrateBlur::bEnabled,
+                 &MGS2RailgunBeam::bEnabled,
+                 &MGS2DemoCameraJudder::bEnabled,
++                &MGS2EndingFlag::bEnabled,
+                 &MGS2PreshadeLights::bEnabled,
+                 &MGS2TankerSnakeSnap::bEnabled,
+                 &MGS2HairLayering::bEnabled,

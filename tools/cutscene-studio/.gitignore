@@ -1,0 +1,31 @@
+# Generated data: derived from the game's files and from the original source tree.
+# Regenerate locally (README, "Setup"); never commit any of it.
+/data/
+# legacy location of the stage tables (gen.go now writes to data/stage/)
+/internal/stage/data/
+
+# Web UI: dependencies and build output. dist/.keep is the one committed file -- the Go
+# binary embeds dist/ and `go build` needs the directory to exist.
+/web/node_modules/
+/web/dist/*
+!/web/dist/.keep
+# the mock backend's copy of effects.json (npm run mock-data)
+/web/public/mock/
+/web/.smoke.mjs
+/web/.rsmoke.cjs
+/web/*.tsbuildinfo
+
+# Binaries, bakes and other machine-local output
+*.exe
+*.exe~
+/out/
+/tmp/
+putobj_registry.json
+__pycache__/
+
+# Never commit game files
+*.sdt
+*.sdt.orig
+*.gcx
+*.wav
+*.asd
